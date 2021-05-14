@@ -1,0 +1,38 @@
+version: '2'
+services:
+  shop-es:
+    image: elasticsearch:${ES_VERSION}
+    container_name: ${ES_CONTAINER_NAME}
+    restart: unless-stopped
+    environment:
+      - node.name=${ES_NODE_NAME}
+      - cluster.name=${ES_CLUSTER_NAME}
+      - cluster.initial_master_nodes=${ES_MASTER_NODES}
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - LANG=en_US.utf8
+      - TZ=Asia/Seoul
+      - network.host=0.0.0.0
+      - network.publish_host=${ES_HOST_NAME}
+      - discovery.seed_hosts=${ES_DISCOVERY_SEEED_HOSTS}
+      - node.master=${ES_NODE_MASTER}
+      - node.data=${ES_NODE_DATA}
+      - node.ingest=${ES_NODE_INGEST}
+      - search.remote.connect=true
+      - http.port=${ES_HTTP_PORT}
+      - transport.tcp.port=${ES_SEED_PORT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - ${ES_HOME_DIR}/../${ES_NODE_NAME}-data:/usr/share/elasticsearch/data
+      - ${ES_HOME_DIR}/config:/usr/share/elasticsearch/config
+      - ${ES_HOME_DIR}/plugins:/usr/share/elasticsearch/plugins
+    ports:
+      - ${ES_HTTP_PORT}:${ES_HTTP_PORT}
+      - ${ES_SEED_PORT}:${ES_SEED_PORT}
+    network_mode: bridge
