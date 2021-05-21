@@ -1,0 +1,61 @@
+PUT /search_keyword
+{
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "kor2eng_analyzer": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [
+              "trim",
+              "lowercase",
+              "javacafe_kor2eng"
+            ]
+          },
+          "eng2kor_analyzer": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [
+              "trim",
+              "lowercase",
+              "javacafe_eng2kor"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+PUT /search_keyword/_doc/_mapping?include_type_name=true
+{
+  "properties": {
+    "name": {
+      "type": "keyword",
+      "copy_to": ["kor2eng_suggest", "eng2kor_suggest"]
+    },
+    "kor2eng_suggest" : {
+      "type": "text",
+      "analyzer": "standard",
+      "search_analyzer": "kor2eng_analyzer"
+    },
+    "eng2kor_suggest" : {
+      "type": "text",
+      "analyzer": "standard",
+      "search_analyzer": "eng2kor_analyzer"
+    }
+  }
+}
+
+
+
+PUT /search_keyword/_doc/1
+{"name" : "삼성전자"}
+
+PUT /search_keyword/_doc/2
+{"name" : "apple"}
