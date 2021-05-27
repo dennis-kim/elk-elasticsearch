@@ -44,6 +44,6 @@ https://github.com/javacafe-project/elasticsearch-plugin/releases
     7.0.0을 다운받아 압축해제 후 plugin-descriptor.properties 파일을 열어 elasticsearch.version을 사용할 es버전으로 변경하여 저장하고
     디렉토리명의 버전을 변경된 ES 버전으로 변경한뒤 재압축한다.
 javacafe-analyzer**.zip 파일을 컨테이너 내부에 복사를하고
-"elasticsearch-plugin install {복사한 zip 파일}" 명령어로 설치를 진행한다.
+"elasticsearch-plugin install file://{복사한 zip 파일 절대 경로}" 명령어로 설치를 진행한다.
 "elasticsearch-plugin list" 명령어로 설치 확인하고
 ES를 재시작한다.
