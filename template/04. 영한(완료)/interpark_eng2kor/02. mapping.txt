@@ -1,0 +1,15 @@
+PUT /autocmpl_search/autocmpl_search/_mapping?include_type_name=true
+{
+   "properties":{
+      "autocmpl_keyword":{
+         "type":"keyword",
+         "fields":{
+            "eng2kor":{
+               "type":"text",
+               "analyzer":"standard",
+               "search_analyzer":"eng2kor_analyzer"
+            }
+         }
+      }
+   }
+}

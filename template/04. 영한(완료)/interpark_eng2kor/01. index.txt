@@ -1,4 +1,4 @@
-PUT /autocmpl
+PUT /autocmpl_search
 {
    "settings":{
       "index":{
@@ -34,24 +34,13 @@ PUT /autocmpl
                   "edge_ngram_filter_back"
                ]
             },
-            "korean_spell_index_analyzer":{
-               "type":"custom",
-               "tokenizer":"standard",
-               "filter":[
-                  "javacafe_spell_filter",
-                  "lowercase",
-                  "trim",
-                  "edge_ngram_filter_front",
-                  "edge_ngram_filter_back"
-               ]
-            },
-            "korean_spell_search_analyzer":{
+            "eng2kor_analyzer":{
                "type":"custom",
                "tokenizer":"standard",
                "filter":[
                   "trim",
                   "lowercase",
-                  "javacafe_spell_filter"
+                  "interpark_eng2kor_filter"
                ]
             }
          },
@@ -92,8 +81,8 @@ PUT /autocmpl
                "max_gram":"50",
                "side":"back"
             },
-            "javacafe_spell_filter":{
-               "type":"javacafe_spell"
+            "interpark_eng2kor_filter":{
+               "type":"interpark_eng2kor"
             }
          }
       }

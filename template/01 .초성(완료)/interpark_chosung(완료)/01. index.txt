@@ -1,4 +1,4 @@
-PUT /autocmpl
+PUT /autocmpl_search
 {
    "settings":{
       "index":{
@@ -34,22 +34,22 @@ PUT /autocmpl
                   "edge_ngram_filter_back"
                ]
             },
-            "eng2kor_index_analyzer":{
+            "chosung_index_analyzer":{
                "type":"custom",
-               "tokenizer":"keyword",
+               "tokenizer":"standard",
                "filter":[
-                  "javacafe_eng2kor_filter",
+                  "interpark_chosung_filter",
                   "lowercase",
                   "trim",
                   "edge_ngram_filter_front",
                   "edge_ngram_filter_back"
                ]
             },
-            "eng2kor_search_analyzer":{
+            "chosung_search_analyzer":{
                "type":"custom",
-               "tokenizer":"keyword",
+               "tokenizer":"standard",
                "filter":[
-                  "javacafe_eng2kor_filter",
+                  "interpark_chosung_search_filter",
                   "lowercase",
                   "trim"
                ]
@@ -92,8 +92,11 @@ PUT /autocmpl
                "max_gram":"50",
                "side":"back"
             },
-            "javacafe_eng2kor_filter":{
-               "type":"javacafe_eng2kor"
+            "interpark_chosung_filter":{
+               "type":"interpark_chosung"
+            },
+            "interpark_chosung_search_filter":{
+               "type":"interpark_chosung_search"
             }
          }
       }
