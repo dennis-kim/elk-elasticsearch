@@ -1,0 +1,11 @@
+POST autocmpl/_analyze
+{
+  "analyzer": "kms_nori_token_analyzer",
+  "text": "무선선풍기"
+}
+
+POST my_index/_analyze
+{
+  "analyzer": "kms_nori_token_analyzer",
+  "text": "무선청소기"
+}

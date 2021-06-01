@@ -1,0 +1,11 @@
+POST /autocmpl/_doc/1
+{
+  "analyzer": "kms_nori_token_analyzer",
+  "text": "무선선풍기"
+}
+
+POST /autocmpl/_doc/2
+{
+  "analyzer": "kms_nori_token_analyzer",
+  "text": "무선청소기"
+}

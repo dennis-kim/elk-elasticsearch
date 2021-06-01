@@ -1,0 +1,14 @@
+POST /autocmpl_search/_doc/1
+{
+  "keyword": "무선선풍기"
+}
+
+POST /autocmpl_search/_doc/2
+{
+  "keyword": "무선청소기"
+}
+
+POST /autocmpl_search/_doc/3
+{
+  "keyword": "삼성전자"
+}

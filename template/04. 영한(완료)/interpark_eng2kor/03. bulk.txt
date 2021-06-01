@@ -1,7 +1,0 @@
-POST /autocmpl_search/_bulk
-{"index" : { "_index" : "autocmpl_search", "_type" : "autocmpl_search", "_id" : "1" }}
-{"autocmpl_keyword" : "신혼"}
-{"index" : { "_index" : "autocmpl_search", "_type" : "autocmpl_search", "_id" : "2" }}
-{"autocmpl_keyword" : "iphone"}
-{"index" : { "_index" : "autocmpl_search", "_type" : "autocmpl_search", "_id" : "3" }}
-{"autocmpl_keyword" : "삼성전자"}
