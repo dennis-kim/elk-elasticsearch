@@ -3,15 +3,15 @@ PUT /autocmpl_search
    "settings":{
       "analysis":{
          "tokenizer":{
-            "kms_nori_tokenizer":{
+            "interpark_nori_tokenizer":{
                "type":"nori_tokenizer",
                "decompound_mode":"mixed"
             }
          },
          "analyzer":{
-            "kms_nori_token_analyzer":{
+            "nori_token_analyzer":{
                "type":"custom",
-               "tokenizer":"kms_nori_tokenizer"
+               "tokenizer":"interpark_nori_tokenizer"
             },
             "chosung_index_analyzer":{
                "filter":[
@@ -20,7 +20,7 @@ PUT /autocmpl_search
                   "trim"
                ],
                "type":"custom",
-               "tokenizer":"kms_nori_tokenizer"
+               "tokenizer":"interpark_nori_tokenizer"
             },
             "chosung_search_analyzer":{
                "filter":[
@@ -33,7 +33,7 @@ PUT /autocmpl_search
             },
             "jamo_index_analyzer":{
                "type":"custom",
-               "tokenizer":"kms_nori_tokenizer",
+               "tokenizer":"interpark_nori_tokenizer",
                "filter":[
                   "interpark_jamo_filter",
                   "lowercase",
@@ -48,6 +48,33 @@ PUT /autocmpl_search
                   "lowercase",
                   "trim"
                ]
+            },
+            "eng2kor_analyzer":{
+               "type":"custom",
+               "tokenizer":"standard",
+               "filter":[
+                  "trim",
+                  "lowercase",
+                  "interpark_eng2kor_filter"
+               ]
+            },
+            "spell_index_analyzer":{
+               "type":"custom",
+               "tokenizer":"standard",
+               "filter":[
+                  "lowercase",
+                  "trim",
+                  "interpark_spell_filter"
+               ]
+            },
+            "spell_search_analyzer":{
+               "type":"custom",
+               "tokenizer":"standard",
+               "filter":[
+                  "trim",
+                  "lowercase",
+                  "interpark_spell_filter"
+               ]
             }
          },
          "filter":{
@@ -59,12 +86,21 @@ PUT /autocmpl_search
             },
             "interpark_jamo_filter":{
                "type":"interpark_jamo"
+            },
+            "interpark_eng2kor_filter":{
+               "type":"interpark_eng2kor"
+            },
+            "interpark_spell_filter":{
+               "type":"interpark_spell"
             }
          }
       }
    },
    "mappings":{
       "properties":{
+         "mall_tp":{
+            "type":"keyword"
+         },
          "keyword":{
             "type":"keyword",
             "fields":{
@@ -80,9 +116,21 @@ PUT /autocmpl_search
                   "search_analyzer":"jamo_search_analyzer",
                   "boost":10
                },
+               "eng2kor":{
+                  "type":"text",
+                  "analyzer":"nori_token_analyzer",
+                  "search_analyzer":"eng2kor_analyzer",
+                  "boost":10
+               },
+               "spell":{
+                  "type":"text",
+                  "analyzer":"spell_index_analyzer",
+                  "search_analyzer":"spell_search_analyzer",
+                  "boost":10
+               },
                "nori":{
                   "type":"text",
-                  "analyzer":"kms_nori_token_analyzer"
+                  "analyzer":"nori_token_analyzer"
                }
             }
          }

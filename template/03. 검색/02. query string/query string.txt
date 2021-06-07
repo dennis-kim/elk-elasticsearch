@@ -1,0 +1,1 @@
+GET /autocmpl/_search?q=mall_tp:SHOP%20AND%20keyword:냉장고&size=10

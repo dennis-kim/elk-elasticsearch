@@ -1,0 +1,23 @@
+POST /autocmpl/_search
+{
+   "query":{
+      "query_string":{
+        "query": "(아이팯) AND (mall_tp:SHOP)",
+        "fields": [
+          "keyword.chosung",
+          "keyword.jamo",
+          "keyword.eng2kor",
+          "keyword.spell",
+          "keyword.nori"
+        ]
+      }  
+   },
+   "size": 5, 
+   "sort": [
+     {
+       "cnt": {
+         "order": "desc"
+       }
+     }
+   ]
+}

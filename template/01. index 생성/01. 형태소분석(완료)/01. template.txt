@@ -3,16 +3,16 @@ PUT /autocmpl
   "settings": {
     "analysis": {
       "tokenizer": {
-        "kms_nori_tokenizer": {
+        "interpark_nori_tokenizer": {
           "type": "nori_tokenizer",
           "decompound_mode": "mixed"
         }
       },
       
       "analyzer": {
-        "kms_nori_token_analyzer": {
+        "nori_token_analyzer": {
           "type": "custom",
-          "tokenizer": "kms_nori_tokenizer"
+          "tokenizer": "interpark_nori_tokenizer"
         }
       }
       
@@ -22,7 +22,7 @@ PUT /autocmpl
       "properties": {
         "text": {
           "type": "text",
-          "analyzer":"kms_nori_token_analyzer"
+          "analyzer":"nori_token_analyzer"
         }
       }
   }

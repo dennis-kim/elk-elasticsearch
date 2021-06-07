@@ -1,0 +1,5 @@
+POST autocmpl_search/_analyze
+{
+  "analyzer": "nori_token_analyzer",
+  "text": "무선청소기"
+}

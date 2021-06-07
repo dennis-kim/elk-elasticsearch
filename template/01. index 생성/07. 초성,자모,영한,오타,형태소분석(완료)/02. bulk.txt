@@ -1,0 +1,17 @@
+POST /autocmpl_search/_doc/1
+{
+  "keyword": "무선선풍기",
+  "mall_tp":"SHOP"
+}
+
+POST /autocmpl_search/_doc/2
+{
+  "keyword": "무선청소기",
+  "mall_tp":"SHOP"
+}
+
+POST /autocmpl_search/_doc/3
+{
+  "keyword": "삼성전자",
+  "mall_tp":"SHOP"
+}

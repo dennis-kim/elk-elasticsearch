@@ -3,29 +3,38 @@ PUT /autocmpl_search
    "settings":{
       "analysis":{
          "tokenizer":{
-            "kms_nori_tokenizer":{
+            "interpark_nori_tokenizer":{
                "type":"nori_tokenizer",
                "decompound_mode":"mixed"
             }
          },
          "analyzer":{
-            "kms_nori_token_analyzer":{
+            "nori_token_analyzer":{
                "type":"custom",
-               "tokenizer":"kms_nori_tokenizer"
+               "tokenizer":"interpark_nori_tokenizer"
             },
-            "eng2kor_analyzer":{
+            "jamo_index_analyzer":{
+               "type":"custom",
+               "tokenizer":"interpark_nori_tokenizer",
+               "filter":[
+                  "interpark_jamo_filter",
+                  "lowercase",
+                  "trim"
+               ]
+            },
+            "jamo_search_analyzer":{
                "type":"custom",
                "tokenizer":"standard",
                "filter":[
-                  "trim",
+                  "interpark_jamo_filter",
                   "lowercase",
-                  "interpark_eng2kor_filter"
+                  "trim"
                ]
             }
          },
          "filter":{
-            "interpark_eng2kor_filter":{
-               "type":"interpark_eng2kor"
+            "interpark_jamo_filter":{
+               "type":"interpark_jamo"
             }
          }
       }
@@ -35,15 +44,15 @@ PUT /autocmpl_search
          "keyword":{
             "type":"keyword",
             "fields":{
-               "eng2kor":{
+               "jamo":{
                   "type":"text",
-                  "analyzer":"kms_nori_token_analyzer",
-                  "search_analyzer":"eng2kor_analyzer",
+                  "analyzer":"jamo_index_analyzer",
+                  "search_analyzer":"jamo_search_analyzer",
                   "boost":10
                },
                "nori":{
                   "type":"text",
-                  "analyzer":"kms_nori_token_analyzer"
+                  "analyzer":"nori_token_analyzer"
                }
             }
          }
