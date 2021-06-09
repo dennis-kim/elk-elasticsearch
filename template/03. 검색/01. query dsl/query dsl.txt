@@ -2,7 +2,7 @@ POST /autocmpl/_search
 {
    "query":{
       "query_string":{
-        "query": "(아이팯) AND (mall_tp:SHOP)",
+        "query": "(아이팯) AND (mall_tp:SHOP) AND (all_cnt:>86)",
         "fields": [
           "keyword.chosung",
           "keyword.jamo",
@@ -15,7 +15,7 @@ POST /autocmpl/_search
    "size": 5, 
    "sort": [
      {
-       "cnt": {
+       "all_cnt": {
          "order": "desc"
        }
      }
