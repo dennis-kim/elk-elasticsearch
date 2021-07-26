@@ -1,6 +1,7 @@
-PUT /autocmpl_search
+PUT /shop_autocmpl
 {
    "settings":{
+      "max_result_window":100000,
       "number_of_shards":20,
       "number_of_replicas":1,
       "analysis":{

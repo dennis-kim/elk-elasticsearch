@@ -15,3 +15,25 @@ POST /autocmpl_search/_doc/3
   "keyword": "삼성전자",
   "mall_tp":"SHOP"
 }
+
+POST /shop_autocmpl/_search
+{
+   "query":{
+      "query_string":{
+         "query":"갤럭시",
+         "fields":[
+            "keyword.chosung",
+            "keyword.jamo",
+            "keyword.eng2kor",
+            "keyword.spell",
+            "keyword.nori"
+         ]
+      }
+   },
+   "size":5,
+   "sort":{
+      "all_cnt":{
+         "order":"desc"
+      }
+   }
+}
